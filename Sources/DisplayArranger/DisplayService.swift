@@ -51,6 +51,22 @@ struct DisplayService {
         return try DisplayLayoutYAMLCodec.encode(layout)
     }
 
+    func listConnectedDisplaysAsJSON() throws -> String {
+        let layout = try captureCurrentLayout()
+        return try ConnectedDisplaysJSONCodec.encode(layout.displays)
+    }
+
+    func listConnectedDisplaySummaries() throws -> [ConnectedDisplaySummary] {
+        let layout = try captureCurrentLayout()
+        return layout.displays.map {
+            ConnectedDisplaySummary(
+                displayName: $0.name,
+                displayID: $0.displayID,
+                serialNumber: $0.serialNumber
+            )
+        }
+    }
+
     func applyLayout(yaml: String) throws {
         let desiredLayout = try DisplayLayoutYAMLCodec.decode(yaml)
         try validate(layout: desiredLayout)
@@ -126,6 +142,69 @@ struct DisplayService {
                 return
             }
             partialResult[CGDirectDisplayID(screenNumber.uint32Value)] = screen.localizedName
+        }
+    }
+}
+
+enum ConnectedDisplaysJSONCodec {
+    static func encode(_ displays: [DisplaySnapshot]) throws -> String {
+        guard !displays.isEmpty else {
+            throw DisplayLayoutError.noActiveDisplays
+        }
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        let data = try encoder.encode(displays.map(ConnectedDisplay.init(display:)))
+
+        guard let json = String(data: data, encoding: .utf8) else {
+            throw DisplayLayoutError.unableToEncodeJSON
+        }
+
+        return json
+    }
+
+    private struct ConnectedDisplay: Encodable {
+        let displayID: CGDirectDisplayID
+        let stableIdentifier: String
+        let vendorNumber: UInt32
+        let modelNumber: UInt32
+        let serialNumber: UInt32
+        let name: String
+        let originX: Int
+        let originY: Int
+        let width: Int
+        let height: Int
+        let isMain: Bool
+        let isBuiltin: Bool
+
+        init(display: DisplaySnapshot) {
+            displayID = display.displayID
+            stableIdentifier = display.stableIdentifier
+            vendorNumber = display.vendorNumber
+            modelNumber = display.modelNumber
+            serialNumber = display.serialNumber
+            name = display.name
+            originX = display.originX
+            originY = display.originY
+            width = display.width
+            height = display.height
+            isMain = display.isMain
+            isBuiltin = display.isBuiltin
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case displayID = "display_id"
+            case stableIdentifier = "stable_identifier"
+            case vendorNumber = "vendor_number"
+            case modelNumber = "model_number"
+            case serialNumber = "serial_number"
+            case name
+            case originX = "origin_x"
+            case originY = "origin_y"
+            case width
+            case height
+            case isMain = "is_main"
+            case isBuiltin = "is_builtin"
         }
     }
 }

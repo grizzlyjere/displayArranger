@@ -29,6 +29,14 @@ struct DisplaySnapshot: Sendable, Equatable, Identifiable {
     }
 }
 
+struct ConnectedDisplaySummary: Sendable, Equatable, Identifiable {
+    let displayName: String
+    let displayID: CGDirectDisplayID
+    let serialNumber: UInt32
+
+    var id: String { "\(displayID)" }
+}
+
 enum DisplayLayoutError: LocalizedError {
     case noActiveDisplays
     case unableToEnumerateDisplays(CGError)
@@ -41,6 +49,7 @@ enum DisplayLayoutError: LocalizedError {
     case duplicateDisplayIdentity(String)
     case displayNotFound(String)
     case unsupportedPrimaryDisplayChange
+    case unableToEncodeJSON
 
     var errorDescription: String? {
         switch self {
@@ -66,6 +75,8 @@ enum DisplayLayoutError: LocalizedError {
             return "A display in the layout YAML is not currently connected: \(identity)"
         case .unsupportedPrimaryDisplayChange:
             return "This app can reposition displays with public APIs, but macOS does not expose a public API for changing the primary display."
+        case .unableToEncodeJSON:
+            return "The connected displays could not be encoded as JSON."
         }
     }
 }

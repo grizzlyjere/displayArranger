@@ -1,12 +1,13 @@
 // !$*UTF8*$!
 {
-	objectVersion = 56;
+	archiveVersion = 1;
 	classes = {
 	};
-	archiveVersion = 1;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FAA6D682F9D0B900069788F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FAA6D672F9D0B900069788F /* Assets.xcassets */; };
 		A10000010000000000000001 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000110000000000000001 /* AppEntry.swift */; };
 		A10000020000000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000120000000000000001 /* ContentView.swift */; };
 		A10000030000000000000001 /* DisplayArrangerAppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000130000000000000001 /* DisplayArrangerAppIntents.swift */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FAA6D672F9D0B900069788F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3FAA6D692F9D0D3F0069788F /* DisplayArranger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DisplayArranger-Info.plist"; sourceTree = "<group>"; };
 		A10000110000000000000001 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
 		A10000120000000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A10000130000000000000001 /* DisplayArrangerAppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayArrangerAppIntents.swift; sourceTree = "<group>"; };
@@ -41,13 +44,15 @@
 		A10000510000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				A10000520000000000000001 /* DisplayArranger */,
-				A10000530000000000000001 /* Resources */,
+				3FAA6D692F9D0D3F0069788F /* DisplayArranger-Info.plist */,
+				3FAA6D672F9D0B900069788F /* Assets.xcassets */,
+				A10000520000000000000001 /* Sources/DisplayArranger */,
+				A10000530000000000000001 /*  */,
 				A10000540000000000000001 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A10000520000000000000001 /* DisplayArranger */ = {
+		A10000520000000000000001 /* Sources/DisplayArranger */ = {
 			isa = PBXGroup;
 			children = (
 				A10000110000000000000001 /* AppEntry.swift */,
@@ -60,12 +65,12 @@
 			path = Sources/DisplayArranger;
 			sourceTree = SOURCE_ROOT;
 		};
-		A10000530000000000000001 /* Resources */ = {
+		A10000530000000000000001 /*  */ = {
 			isa = PBXGroup;
 			children = (
 				A10000210000000000000001 /* Icon.icns */,
 			);
-			path = "";
+			name = "";
 			sourceTree = SOURCE_ROOT;
 		};
 		A10000540000000000000001 /* Products */ = {
@@ -104,7 +109,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					A10000610000000000000001 = {
 						CreatedOnToolsVersion = 26.0;
@@ -134,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAA6D682F9D0B900069788F /* Assets.xcassets in Resources */,
 				A10000070000000000000001 /* Icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,9 +194,13 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -208,6 +218,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -244,10 +255,13 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -258,6 +272,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -266,13 +281,17 @@
 		A10000B10000000000000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DisplayArranger-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = DisplayArranger;
 				INFOPLIST_KEY_CFBundleIconFile = Icon;
 				INFOPLIST_KEY_NSSupportsAppShortcuts = YES;
@@ -293,13 +312,17 @@
 		A10000B20000000000000001 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "DisplayArranger-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = DisplayArranger;
 				INFOPLIST_KEY_CFBundleIconFile = Icon;
 				INFOPLIST_KEY_NSSupportsAppShortcuts = YES;
